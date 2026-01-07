@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Inject, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Inject, Param, Post, Put } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { CreateStudentDto } from './dto/student-create.dto';
 
@@ -14,5 +14,20 @@ export class StudentsController {
   @Post('students')
   createStudent(@Body() payload: CreateStudentDto) {
     return this.studentClient.send('student.create', payload);
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.studentClient.send('student.getOne', id);
+  }
+
+  @Put(':id')
+  update(@Param('id') id: string, @Body() data) {
+    return this.studentClient.send('student.update', { id, data });
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.studentClient.send('student.delete', id);
   }
 }
