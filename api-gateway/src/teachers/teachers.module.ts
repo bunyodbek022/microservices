@@ -1,6 +1,6 @@
 import { Module } from "@nestjs/common";
 import { ClientsModule, Transport } from "@nestjs/microservices";
-import { TeacherController } from "./teachers.controller";
+import { TeachersController } from "./teachers.controller";
 
 @Module({
     imports: [ClientsModule.register([{
@@ -14,7 +14,7 @@ import { TeacherController } from "./teachers.controller";
             }
             }
     }])],
-    controllers: [TeacherController]
+    controllers: [TeachersController]
 })
 
 export class TeacherModule{}
